@@ -9,9 +9,15 @@ const App = () => {
    borderRadius: "2%",
    background: "red",
   }
+
+  const title = () =>{
+    return <p>Is the tittle for Origamid</p>
+  }
+
   const isActive = true;
   return (
     <React.Fragment>
+      <h1>{title()}</h1>
       <label htmlFor="nome">Nome</label>
       <input type="text" id="nome" />
       <p style={style} className={isActive == true ? "active" : "noActive" }>{random}</p>
