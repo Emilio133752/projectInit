@@ -8,13 +8,18 @@ import PropsEx from './PropsEx.jsx'
 import Produtos from './Produtos.jsx'
 import Home from './Home.jsx'
 import UseState from './UseState.jsx'
+import ButtonModal from './ButtonModal.jsx'
+  import Modal from "./Modal.jsx"
+
 
 
 const App = () => {
+  const [modal, setModal] = React.useState(false);
   return (
-      <React.Fragment>
-        <UseState/>
-      </React.Fragment>
+    <div>
+        <Modal modal={modal} setModal={setModal} />
+        <ButtonModal setModal={setModal} />
+    </div>
   )
 }
 export default App
