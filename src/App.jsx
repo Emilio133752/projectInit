@@ -9,17 +9,17 @@ import Produtos from './Produtos.jsx'
 import Home from './Home.jsx'
 import UseState from './UseState.jsx'
 import ButtonModal from './ButtonModal.jsx'
-  import Modal from "./Modal.jsx"
+import Modal from "./Modal.jsx"
+import Exercico3 from "./Exercico3.jsx"
 
 
 
 const App = () => {
   const [modal, setModal] = React.useState(false);
   return (
-    <div>
-        <Modal modal={modal} setModal={setModal} />
-        <ButtonModal setModal={setModal} />
-    </div>
+    <React.StrictMode>
+      <Exercico3/>
+    </React.StrictMode>
   )
 }
 export default App
