@@ -38,6 +38,7 @@ const Exercicio = () => {
 
   return (
     <div>
+      <hr />
       <p>Nome: {dados.cliente}</p>
       <p>Idade: {dados.idade}</p>
       <p>

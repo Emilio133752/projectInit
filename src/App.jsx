@@ -2,13 +2,16 @@ import React from "react"
 import Exercicio from './aula02Jsx.jsx'
 import Array from './array.jsx'
 import Exercicio2 from './exercico2.jsx'
-import Eventos from './eventos.jsx'
+import Componentes from './Componentes.jsx'
 
 
 const App = () => {
   return (
     <React.Fragment>
-      <Eventos/>
+      <Exercicio2/>
+      <Exercicio/>
+      <Array/>
+      <Componentes/>
     </React.Fragment>
   )
 }

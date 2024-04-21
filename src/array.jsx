@@ -7,9 +7,11 @@ const Array = () => {
 
   return (
     <div> 
+      <hr />
       {produtos.map((item) => (
         <li key={item}>{item}</li>
       ))}
+      <hr />
     </div>
     );
 }
