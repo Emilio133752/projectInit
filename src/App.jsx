@@ -7,36 +7,14 @@ import Props from './Props.jsx'
 import PropsEx from './PropsEx.jsx'
 import Produtos from './Produtos.jsx'
 import Home from './Home.jsx'
-
-// Dica: const { pathname } = window.location; (puxa o caminho do URL)
-
-const Opcoes = () =>{
-  return(
-    <div>
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./produtos">Produtos</a></li>
-        </ul>
-    </div>
-  )
-}
-
-const Url = () => {
-  const { pathname } = window.location;
-  if(pathname == "/"){
-    return <Home/>
-  }else if(pathname == "/produtos"){
-    return <Produtos/>
-  }
-}
+import UseState from './UseState.jsx'
 
 
 const App = () => {
   return (
-    <React.Fragment>
-      <Opcoes/>
-      <Url />
-    </React.Fragment>
+      <React.Fragment>
+        <UseState/>
+      </React.Fragment>
   )
 }
 export default App
