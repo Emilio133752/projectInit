@@ -11,6 +11,7 @@ import UseState from './UseState.jsx'
 import ButtonModal from './ButtonModal.jsx'
 import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
+import Effects from "./Effects.jsx"
 
 
 
@@ -18,7 +19,7 @@ const App = () => {
   const [modal, setModal] = React.useState(false);
   return (
     <React.StrictMode>
-      <Exercico3/>
+      <Effects/>
     </React.StrictMode>
   )
 }
