@@ -12,14 +12,14 @@ import ButtonModal from './ButtonModal.jsx'
 import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
 import Effects from "./Effects.jsx"
-
+import Exercicio4 from "./Exercicio4.jsx"
 
 
 const App = () => {
   const [modal, setModal] = React.useState(false);
   return (
     <React.StrictMode>
-      <Effects/>
+      <Exercicio4 />
     </React.StrictMode>
   )
 }
