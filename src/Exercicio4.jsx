@@ -10,24 +10,28 @@ const Exercicio4 = () => {
 // Defina o produto clicado como uma preferência do usuário no localStorage
 // Quando o usuário entrar no site, se existe um produto no localStorage, faça o fetch do mesmo
 
-    const [state, setState] = React.useState(null)
+    const [prefer, setPrefer] = React.useState(null)
 
-    async function apis(event){
-        const selected = event.target.innerText
-        const response = await fetch(`https://ranekapi.origamid.dev/json/api/produto/${selected}`)
-        const json = await response.json()
-        setState(json)
-        localStorage.setItem("prefer", selected)
-        localStorage.setItem("nome", json.nome)
-        localStorage.setItem("preco", json.preco)
+
+    React.useEffect(() => {
+      const produtoLocal = window.localStorage.getItem('prefer');
+      if (produtoLocal !== 'null') setPrefer(produtoLocal);
+    }, []);
+
+    React.useEffect(() =>{
+      if (prefer !== null) window.localStorage.setItem('prefer', prefer)
+    }, [prefer])
+
+    const handleClick = ({target}) =>{
+      setPrefer(target.innerText)
     }
 
   return (
     <div> 
-      <h1>Preferencia: {localStorage.getItem("prefer")}</h1>
-      <button style={{margin: '5px',}} onClick={apis}>smartphone</button>
-      <button onClick={apis}>notebook</button>
-      {<Produto state={state}/>}
+      <h1>Preferencia: {prefer}</h1>
+      <button style={{margin: '5px',}} onClick={handleClick}>smartphone</button>
+      <button onClick={handleClick}>notebook</button>
+      {<Produto prefer={prefer}/>}
     </div>
   )
 }
