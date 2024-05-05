@@ -13,14 +13,14 @@ import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
 import Effects from "./Effects.jsx"
 import Exercicio4 from "./Exercicio4.jsx"
-
+import Produtinhos from "./Produtinhos.jsx"
+import { GlobalStorage } from "./UserContext.jsx"
 
 const App = () => {
-  const [modal, setModal] = React.useState(false);
   return (
-    <React.StrictMode>
-      <Exercicio4 />
-    </React.StrictMode>
+    <GlobalStorage>
+      <Produtinhos />
+    </GlobalStorage>
   )
 }
 export default App
