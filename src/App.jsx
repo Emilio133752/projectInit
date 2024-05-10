@@ -12,15 +12,21 @@ import ButtonModal from './ButtonModal.jsx'
 import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
 import Effects from "./Effects.jsx"
-import Exercicio4 from "./Exercicio4.jsx"
-
+import CustomHooks from "./CustomHooks.js"
 
 const App = () => {
-  const [modal, setModal] = React.useState(false);
+  const [produto, setProduto] = CustomHooks('produto', 'setProduct')
+
+  function handleClick({ target }){
+    setProduto(target.innerText)
+  }
+
   return (
-    <React.StrictMode>
-      <Exercicio4 />
-    </React.StrictMode>
+    <>
+      <p>Produto Preferido {produto}</p>
+      <button onClick={handleClick}>01</button>
+      <button onClick={handleClick}>02</button>
+    </>
   )
 }
 export default App
