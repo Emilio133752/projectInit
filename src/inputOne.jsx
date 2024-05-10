@@ -6,6 +6,50 @@ import React from 'react'
 // Essa é a função utilizado para realizar o POST
 // Mostre uma mensagem na tela, caso a resposta da API seja positiva
 
+const formFiles = [
+  {
+    id: 'nome',
+    label: 'Nome',
+    type: 'text'
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    type: 'email'
+  },
+  {
+    id: 'senha',
+    label: 'Senha',
+    type: 'password'
+  },
+  {
+    id: 'cep',
+    label: 'Cep',
+    type: 'text'
+  },
+  {
+    id: 'rua',
+    label: 'Rua',
+    type: 'text'
+  },
+  {
+    id: 'numero',
+    label: 'Numero',
+    type: 'text'
+  },
+  {
+    id: 'cidade',
+    label: 'Cidade',
+    type: 'text'
+  },
+  {
+    id: 'estado',
+    label: 'Estado',
+    type: 'text'
+  }
+  
+  
+]
 
 
 const InputOne = () => {
@@ -41,75 +85,20 @@ const InputOne = () => {
   function handleChange({ target }){
     const {id, value} = target
     setForm({ ...form, [id]: value });
-    console.log(form)
   }
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="nome">Nome</label>
-      <input 
-      id='nome'
-      value={form.nome} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="email">Email</label>
-      <input 
-      id='email'
-      value={form.email} 
-      type="email" 
-      onChange={handleChange}
-      />
-      <label htmlFor="senha">Senha</label>
-      <input 
-      id='senha'
-      value={form.senha} 
-      type="password" 
-      onChange={handleChange}
-      />
-      <label htmlFor="cep">Cep</label>
-      <input 
-      id='cep'
-      value={form.cep} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="rua">Rua</label>
-      <input 
-      id='rua'
-      value={form.rua} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="numero">Numero</label>
-      <input 
-      id='numero'
-      value={form.numero} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="bairro">Bairro</label>
-      <input 
-      id='bairro'
-      value={form.bairro} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="cidade">Cidade</label>
-      <input 
-      id='cidade'
-      value={form.cidade} 
-      type="text" 
-      onChange={handleChange}
-      />
-      <label htmlFor="estado">Estado</label>
-      <input 
-      id='estado'
-      value={form.estado} 
-      type="text" 
-      onChange={handleChange}
-      />
+      {formFiles.map( ({id, label, type}) => 
+      <div key={id}>
+        <label htmlFor={id}>{label}</label>
+        <input 
+        onChange={handleChange}
+        value={form[type]}
+        id={id}
+        type={type}/>
+      </div>)}
       <button>Enviar</button>
-      {load && <div>Enviando...</div>}
+      {load && <p>carregando... </p>}
       {response && response.ok && <div>Usuário Criado</div>}
     </form>
   )
