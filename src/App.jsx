@@ -13,6 +13,9 @@ import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
 import Effects from "./Effects.jsx"
 import CustomHooks from "./CustomHooks.js"
+import Exercicio4 from "./Exercicio4.jsx"
+import Produtinhos from "./Produtinhos.jsx"
+import { GlobalStorage } from "./UserContext.jsx"
 
 const App = () => {
   const [produto, setProduto] = CustomHooks('produto', 'setProduct')
@@ -27,6 +30,6 @@ const App = () => {
       <button onClick={handleClick}>01</button>
       <button onClick={handleClick}>02</button>
     </>
-  )
+    )
 }
 export default App
