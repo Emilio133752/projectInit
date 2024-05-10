@@ -12,24 +12,35 @@ import ButtonModal from './ButtonModal.jsx'
 import Modal from "./Modal.jsx"
 import Exercico3 from "./Exercico3.jsx"
 import Effects from "./Effects.jsx"
-import CustomHooks from "./CustomHooks.js"
 import Exercicio4 from "./Exercicio4.jsx"
 import Produtinhos from "./Produtinhos.jsx"
 import { GlobalStorage } from "./UserContext.jsx"
+import CustomHooks from "./CustomHooks.js"
+import useFecth from "./useFecth.js"
 
 const App = () => {
-  const [produto, setProduto] = CustomHooks('produto', '0')
+  const {request, data, load, error} = useFecth()
 
-  function handleClick(){
-    setProduto((contador) => Number(contador)+1)
+  React.useEffect(() =>{
+    async function fetchData(){
+      const {response, json} = await request('https://ranekapi.origamid.dev/json/api/produto')
+      console.log(response.url)
+    }  
+    fetchData()
+  }, [request])
+
+    if(error) return <div>{error}</div>
+    if(load == true) return <div>carregando</div>
+    if(data)
+      return (
+        <>
+          {data.map((produtos) => 
+          <div key={produtos.id}>
+            <h1>{produtos.nome}</h1>
+          </div>)}
+        </>
+        )
+    else return null
   }
 
-  return (
-    <>
-      <p>Produto Preferido {produto}</p>
-      <button onClick={handleClick}>01</button>
-      <button onClick={handleClick}>02</button>
-    </>
-    )
-}
 export default App
