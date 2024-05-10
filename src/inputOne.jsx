@@ -2,32 +2,39 @@ import React from 'react'
 
 
 const InputOne = () => {
-    const [state, setState] = React.useState('')
-    const [save, setSave] = React.useState([])
-
-    React.useEffect(()=>{
-       document.title = state
-    }, [state]);
-
-    function handleChange({target}){
-        setState(target.value)
+    const [nome, setNome] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [form, setForm] = React.useState({
+        nome: '',
+        email: ''
+    })
+    function handleSubmit(event){
+        event.preventDefault()
+        console.log(nome)
+    }
+    function handleChange({ target }){
+        const {id, value} = target;
+        setForm({ ...form, [id]: value })
     }
 
-    function handleClick(event){
-        if(state == '') return console.log('error')
-            setSave([...save, state])
-    }
-  return (
-    <div>
-      <input value={state} onChange={handleChange} type="text" />
-      <button onClick={handleClick}> Enviar </button>
-      <div>
-        {save.map((mapear, index) =>(
-            <p key={index}>{mapear}</p>
-        ))}
-        </div>
-        <p style={{color: 'blue'}}>{state}</p>
-    </div>
+    return (
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          value={form.nome}
+          onChange={handleChange}
+        />
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <button>Enviar</button>
+      </form>
   )
 }
 
