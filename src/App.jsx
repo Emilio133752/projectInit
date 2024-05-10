@@ -17,30 +17,16 @@ import Produtinhos from "./Produtinhos.jsx"
 import { GlobalStorage } from "./UserContext.jsx"
 import CustomHooks from "./CustomHooks.js"
 import useFecth from "./useFecth.js"
+import InputOne from "./inputOne.jsx"
+
+
 
 const App = () => {
-  const {request, data, load, error} = useFecth()
-
-  React.useEffect(() =>{
-    async function fetchData(){
-      const {response, json} = await request('https://ranekapi.origamid.dev/json/api/produto')
-      console.log(response.url)
-    }  
-    fetchData()
-  }, [request])
-
-    if(error) return <div>{error}</div>
-    if(load == true) return <div>carregando</div>
-    if(data)
-      return (
-        <>
-          {data.map((produtos) => 
-          <div key={produtos.id}>
-            <h1>{produtos.nome}</h1>
-          </div>)}
-        </>
-        )
-    else return null
-  }
+  return(
+    <React.StrictMode>
+      <InputOne />
+    </React.StrictMode>
+  )
+}
 
 export default App
