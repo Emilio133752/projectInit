@@ -18,10 +18,10 @@ import Produtinhos from "./Produtinhos.jsx"
 import { GlobalStorage } from "./UserContext.jsx"
 
 const App = () => {
-  const [produto, setProduto] = CustomHooks('produto', 'setProduct')
+  const [produto, setProduto] = CustomHooks('produto', '0')
 
-  function handleClick({ target }){
-    setProduto(target.innerText)
+  function handleClick(){
+    setProduto((contador) => Number(contador)+1)
   }
 
   return (

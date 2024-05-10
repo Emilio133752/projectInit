@@ -5,7 +5,7 @@ const CustomHooks = (key, inicial) => {
         const local = window.localStorage.getItem(key)
         return local ? local : inicial
     })
-
+    
     React.useEffect(() =>{
         window.localStorage.setItem(key, state)
     }, [key, state])
