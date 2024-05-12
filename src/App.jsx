@@ -20,15 +20,19 @@ import useFecth from "./useFecth.js"
 import InputOne from "./inputOne.jsx"
 import Select from "./Select.jsx"
 import Input from "./Form/Input.jsx"
-
+import Checkbox from "./Form/Checkbox.jsx"
 
 const App = () => {
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [linaguagens, setLinguagens] = React.useState([]);
   return(
     <React.StrictMode>
       <Select />
+      <hr/>
       <form>
+        <Checkbox value={linaguagens} setValue={setLinguagens} options={['JavaScript', 'PHP', 'Ruby']} />
+        <hr/>
         <Input style={{color: 'green'}} id='nome' label='Nome' value={nome} setValue={setNome} />
         <Input style={{color: 'orange'}} id='email' label='Email'value={email} setValue={setEmail} />
       </form>
