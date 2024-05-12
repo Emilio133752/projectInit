@@ -18,13 +18,13 @@ import { GlobalStorage } from "./UserContext.jsx"
 import CustomHooks from "./CustomHooks.js"
 import useFecth from "./useFecth.js"
 import InputOne from "./inputOne.jsx"
-
+import Select from "./Select.jsx"
 
 
 const App = () => {
   return(
     <React.StrictMode>
-      <InputOne />
+      <Select />
     </React.StrictMode>
   )
 }
