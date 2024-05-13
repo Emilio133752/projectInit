@@ -21,57 +21,90 @@ import InputOne from "./inputOne.jsx"
 import Select from "./Select.jsx"
 import Input from "./Form/Input.jsx"
 import Checkbox from "./Form/Checkbox.jsx"
+import useForm from "./Form/useForm.jsx"
+import Desafio from "./Form/Desafio.jsx"
+import Radio from "./Form/Radio.jsx"
+import { flushSync } from "react-dom"
+
+const perguntas = [
+  {
+    pergunta: 'Qual método é utilizado para criar componentes?',
+    options: [
+      'React.makeComponent()',
+      'React.createComponent()',
+      'React.createElement()',
+    ],
+    resposta: 'React.createElement()',
+    id: 'p1',
+  },
+  {
+    pergunta: 'Como importamos um componente externo?',
+    options: [
+      'import Component from "./Component"',
+      'require("./Component")',
+      'import "./Component"',
+    ],
+    resposta: 'import Component from "./Component"',
+    id: 'p2',
+  },
+  {
+    pergunta: 'Qual hook não é nativo?',
+    options: ['useEffect()', 'useFetch()', 'useCallback()'],
+    resposta: 'useFetch()',
+    id: 'p3',
+  },
+  {
+    pergunta: 'Qual palavra deve ser utilizada para criarmos um hook?',
+    options: ['set', 'get', 'use'],
+    resposta: 'use',
+    id: 'p4',
+  },
+];
 
 const App = () => {
-
-  const [cep, setCep] = React.useState('');
-  const [error, setError] = React.useState(null);
-
-  function validateCep(value) {
-    if (value.length === 0) {
-      setError('Preencha um valor');
-      return false;
-    } else if (!/^\d{5}-?\d{3}$/.test(value)) {
-      setError('Preencha um cep válido');
-      return false;
-    } else {
-      setError(null);
-      return true;
-    }
+  const [respostas, setResposta] = React.useState({
+    p1: '',
+    p2: '',
+    p3: '',
+    p4: '',
+  })
+  const [slide, setSlide] = React.useState(0) 
+  const [resultado, setResultado] = React.useState(null)
+  function handleChange({target}){
+    setResposta({...respostas, [target.id]: target.value})
   }
 
-  function handleBlur({ target }) {
-    validateCep(target.value);
-  }
-
-  function handleChange({ target }) {
-    if (error) validateCep(target.value);
-    setCep(target.value);
-
-  }
-
-  function handleSubmit( event){
+  function handleSubmit(event){
     event.preventDefault()
-    if(validateCep(cep))
-    console.log('envia')
-    else
-    console.log('nao envia')
   }
 
+  function resultadoFinal(){
+    const corretas = perguntas.filter(
+      ({id, resposta}) =>  respostas[id] === resposta)    
+      setResultado(`Vocẽ acertou ${corretas.length} de ${perguntas.length}`)
+  }
+
+  function handleCLick(){
+    if(slide < perguntas.length - 1){
+      setSlide(slide + 1)
+    }else{
+      setSlide(slide + 1)
+      resultadoFinal()
+    }
+    
+  }
 
   return(
     <form onSubmit={handleSubmit}>
-      <Input
-        label="CEP"
-        id="cep"
-        type="text"
-        value={cep}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        placeholder='1020120321'
-      />
-      {error && <p>{error}</p>}
-      <button>Enviar</button>
+      {perguntas.map((pergunta, index) => 
+      <Radio 
+       active={slide === index}
+       key={index} 
+       value={respostas[pergunta.id]} 
+       onChange={handleChange} 
+       {...pergunta} /> )}
+       {resultado && <p>{resultado}</p>}
+      <button onClick={handleCLick}>Próximo</button>
     </form>
   )
 }
