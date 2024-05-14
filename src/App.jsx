@@ -59,6 +59,12 @@ const perguntas = [
     resposta: 'use',
     id: 'p4',
   },
+  {
+    pergunta: 'Qual palavra deve ser utilizada para criarmos um hook?',
+    options: ['set', 'get', 'use'],
+    resposta: 'use',
+    id: 'p5',
+  }
 ];
 
 const App = () => {
@@ -67,6 +73,7 @@ const App = () => {
     p2: '',
     p3: '',
     p4: '',
+    p5: '',
   })
   const [slide, setSlide] = React.useState(0) 
   const [resultado, setResultado] = React.useState(null)
@@ -85,20 +92,29 @@ const App = () => {
   }
 
   function handleClick({target}){
-    console.log(slide)
     if(target.innerText === 'Anterior'){
       if(slide === 0){
         return null
       }else{
-        setSlide(slide - 1)
+        if(resultado){
+          return null
+        }else{
+          setSlide(slide - 1)
+        }
+      }
+    }else if(target.innerText === 'Reiniciar'){
+      console.log()
+      setResultado(null)
+      setSlide(0)
+    }else{
+      if(slide < perguntas.length - 1){
+        setSlide(slide + 1)
+      }else{
+        setSlide(slide + 1)
+        resultadoFinal()
       }
     }
-    if(slide < perguntas.length - 1){
-      setSlide(slide + 1)
-    }else{
-      setSlide(slide + 1)
-      resultadoFinal()
-    }
+
   }
 
   return(
@@ -111,8 +127,13 @@ const App = () => {
        onChange={handleChange} 
        {...pergunta} /> )}
        {resultado && <p>{resultado}</p>}
-      <button onClick={handleClick}>Próximo</button>
-      <button onClick={handleClick}>Anterior</button>
+       {!resultado &&
+        <>
+        <button onClick={handleClick}>Próximo</button>
+        <button onClick={handleClick}>Anterior</button>
+        </>
+       }
+       {resultado && <button onClick={handleClick}>Reiniciar</button>}
     </form>
   )
 }
