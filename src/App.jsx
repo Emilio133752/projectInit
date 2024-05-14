@@ -84,14 +84,21 @@ const App = () => {
       setResultado(`Vocẽ acertou ${corretas.length} de ${perguntas.length}`)
   }
 
-  function handleCLick(){
+  function handleClick({target}){
+    console.log(slide)
+    if(target.innerText === 'Anterior'){
+      if(slide === 0){
+        return null
+      }else{
+        setSlide(slide - 1)
+      }
+    }
     if(slide < perguntas.length - 1){
       setSlide(slide + 1)
     }else{
       setSlide(slide + 1)
       resultadoFinal()
     }
-    
   }
 
   return(
@@ -104,7 +111,8 @@ const App = () => {
        onChange={handleChange} 
        {...pergunta} /> )}
        {resultado && <p>{resultado}</p>}
-      <button onClick={handleCLick}>Próximo</button>
+      <button onClick={handleClick}>Próximo</button>
+      <button onClick={handleClick}>Anterior</button>
     </form>
   )
 }
