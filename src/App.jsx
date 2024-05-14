@@ -60,7 +60,7 @@ const perguntas = [
     id: 'p4',
   },
   {
-    pergunta: 'Qual palavra deve ser utilizada para criarmos um hook?',
+    pergunta: 'Olár?',
     options: ['set', 'get', 'use'],
     resposta: 'use',
     id: 'p5',
@@ -105,6 +105,13 @@ const App = () => {
     }else if(target.innerText === 'Reiniciar'){
       console.log()
       setResultado(null)
+      setResposta({
+        p1: '',
+        p2: '',
+        p3: '',
+        p4: '',
+        p5: '',
+      })
       setSlide(0)
     }else{
       if(slide < perguntas.length - 1){
