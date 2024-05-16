@@ -25,6 +25,9 @@ import useForm from "./Form/useForm.jsx"
 import Desafio from "./Form/Desafio.jsx"
 import Radio from "./Form/Radio.jsx"
 import { flushSync } from "react-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const perguntas = [
   {
@@ -94,6 +97,7 @@ const App = () => {
   function handleClick({target}){
     if(target.innerText === 'Anterior'){
       if(slide === 0){
+        toast.warning("Não há nada para retornar!")
         return null
       }else{
         if(resultado){
@@ -103,7 +107,7 @@ const App = () => {
         }
       }
     }else if(target.innerText === 'Reiniciar'){
-      console.log()
+      toast.info('Vamos recomeçar...')
       setResultado(null)
       setResposta({
         p1: '',
@@ -118,6 +122,7 @@ const App = () => {
         setSlide(slide + 1)
       }else{
         setSlide(slide + 1)
+        toast.success('Você terminou o questionário!')
         resultadoFinal()
       }
     }
@@ -125,23 +130,24 @@ const App = () => {
   }
 
   return(
-    <form onSubmit={handleSubmit}>
-      {perguntas.map((pergunta, index) => 
-      <Radio 
-       active={slide === index}
-       key={index} 
-       value={respostas[pergunta.id]} 
-       onChange={handleChange} 
-       {...pergunta} /> )}
-       {resultado && <p>{resultado}</p>}
-       {!resultado &&
-        <>
-        <button onClick={handleClick}>Próximo</button>
-        <button onClick={handleClick}>Anterior</button>
-        </>
-       }
-       {resultado && <button onClick={handleClick}>Reiniciar</button>}
-    </form>
+      <form onSubmit={handleSubmit}>
+        {perguntas.map((pergunta, index) => 
+        <Radio 
+        active={slide === index}
+        key={index} 
+        value={respostas[pergunta.id]} 
+        onChange={handleChange} 
+        {...pergunta} /> )}
+        {resultado && <p>{resultado}</p>}
+        {!resultado &&
+          <>
+          <button onClick={handleClick}>Próximo</button>
+          <button onClick={handleClick}>Anterior</button>
+          </>
+        }
+        {resultado && <button onClick={handleClick}>Reiniciar</button>}
+        <ToastContainer position="top-right" />
+      </form>
   )
 }
 
