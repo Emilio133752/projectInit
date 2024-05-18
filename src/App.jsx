@@ -25,129 +25,26 @@ import useForm from "./Form/useForm.jsx"
 import Desafio from "./Form/Desafio.jsx"
 import Radio from "./Form/Radio.jsx"
 import { flushSync } from "react-dom"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Slide from "./Slide.jsx"
 
-
-const perguntas = [
-  {
-    pergunta: 'Qual método é utilizado para criar componentes?',
-    options: [
-      'React.makeComponent()',
-      'React.createComponent()',
-      'React.createElement()',
-    ],
-    resposta: 'React.createElement()',
-    id: 'p1',
-  },
-  {
-    pergunta: 'Como importamos um componente externo?',
-    options: [
-      'import Component from "./Component"',
-      'require("./Component")',
-      'import "./Component"',
-    ],
-    resposta: 'import Component from "./Component"',
-    id: 'p2',
-  },
-  {
-    pergunta: 'Qual hook não é nativo?',
-    options: ['useEffect()', 'useFetch()', 'useCallback()'],
-    resposta: 'useFetch()',
-    id: 'p3',
-  },
-  {
-    pergunta: 'Qual palavra deve ser utilizada para criarmos um hook?',
-    options: ['set', 'get', 'use'],
-    resposta: 'use',
-    id: 'p4',
-  },
-  {
-    pergunta: 'Olár?',
-    options: ['set', 'get', 'use'],
-    resposta: 'use',
-    id: 'p5',
-  }
-];
 
 const App = () => {
-  const [respostas, setResposta] = React.useState({
-    p1: '',
-    p2: '',
-    p3: '',
-    p4: '',
-    p5: '',
-  })
-  const [slide, setSlide] = React.useState(0) 
-  const [resultado, setResultado] = React.useState(null)
-  function handleChange({target}){
-    setResposta({...respostas, [target.id]: target.value})
-  }
-
-  function handleSubmit(event){
-    event.preventDefault()
-  }
-
-  function resultadoFinal(){
-    const corretas = perguntas.filter(
-      ({id, resposta}) =>  respostas[id] === resposta)    
-      setResultado(`Vocẽ acertou ${corretas.length} de ${perguntas.length}`)
-  }
-
-  function handleClick({target}){
-    if(target.innerText === 'Anterior'){
-      if(slide === 0){
-        toast.warning("Não há nada para retornar!")
-        return null
-      }else{
-        if(resultado){
-          return null
-        }else{
-          setSlide(slide - 1)
-        }
-      }
-    }else if(target.innerText === 'Reiniciar'){
-      toast.info('Vamos recomeçar...')
-      setResultado(null)
-      setResposta({
-        p1: '',
-        p2: '',
-        p3: '',
-        p4: '',
-        p5: '',
-      })
-      setSlide(0)
-    }else{
-      if(slide < perguntas.length - 1){
-        setSlide(slide + 1)
-      }else{
-        setSlide(slide + 1)
-        toast.success('Você terminou o questionário!')
-        resultadoFinal()
-      }
+  const slides = [
+    {
+      id: "slides1",
+      text: 'one1'
+    },
+    {
+      id: "slides2",
+      text: 'one2'
+    },
+    {
+      id: "slides3",
+      text: 'one3'
     }
-
-  }
-
+  ]
   return(
-      <form onSubmit={handleSubmit}>
-        {perguntas.map((pergunta, index) => 
-        <Radio 
-        active={slide === index}
-        key={index} 
-        value={respostas[pergunta.id]} 
-        onChange={handleChange} 
-        {...pergunta} /> )}
-        {resultado && <p>{resultado}</p>}
-        {!resultado &&
-          <>
-          <button onClick={handleClick}>Próximo</button>
-          <button onClick={handleClick}>Anterior</button>
-          </>
-        }
-        {resultado && <button onClick={handleClick}>Reiniciar</button>}
-        <ToastContainer position="top-right" />
-      </form>
+    <Slide slides={slides} />
   )
 }
 
