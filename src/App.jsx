@@ -26,26 +26,17 @@ import Desafio from "./Form/Desafio.jsx"
 import Radio from "./Form/Radio.jsx"
 import { flushSync } from "react-dom"
 import Slide from "./Slide.jsx"
+import Rotas from "./Routes/Rotas.jsx"
+// Utilize a API abaixo para puxar a lista de produto
+// https://ranekapi.origamid.dev/json/api/produto
+// Cada produto possui o id, o mesmo pode ser passado na api para retornar os dados desse produto específico
+// https://ranekapi.origamid.dev/json/api/produto/notebook
+
+
 
 const App = () => {
-  const slides = [
-    {
-      id: "slides1",
-      text:'on1'
-    },
-    {
-      id: "slides2",
-      text: 'one2'
-    },
-    {
-      id: "slides3",
-      text: 'one3'
-    }
-  ]
   return(
-    <>
-      <Slide slides={slides} />
-    </>
+    <Rotas />
   )
 }
 
