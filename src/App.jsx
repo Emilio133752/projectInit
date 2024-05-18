@@ -27,12 +27,11 @@ import Radio from "./Form/Radio.jsx"
 import { flushSync } from "react-dom"
 import Slide from "./Slide.jsx"
 
-
 const App = () => {
   const slides = [
     {
       id: "slides1",
-      text: 'one1'
+      text:'on1'
     },
     {
       id: "slides2",
@@ -44,7 +43,9 @@ const App = () => {
     }
   ]
   return(
-    <Slide slides={slides} />
+    <>
+      <Slide slides={slides} />
+    </>
   )
 }
 

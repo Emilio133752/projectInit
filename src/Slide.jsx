@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Slide.module.css'
-
+import Dog from './img/dog.svg?react'
 
 const Slide = ( {slides} ) => {
     const [ativo, setAtivo] = React.useState(0)
@@ -23,6 +23,7 @@ const Slide = ( {slides} ) => {
 
   return (
     <section className={styles.container}>
+        <img src={Dog} alt="" />
         <div 
         className={styles.content}
         ref={contextRef}
