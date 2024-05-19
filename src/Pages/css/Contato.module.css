@@ -1,0 +1,41 @@
+.container{
+    display: flex;
+    justify-content: center;
+    max-width: 695px;
+    flex-wrap: wrap;
+    margin: 2% auto;
+}
+
+.subContainer{
+    margin-right: 35px;
+}
+
+.imagem{
+    max-width: 900px;
+    height: 450px;
+    border-radius: 5%;
+    margin-right: 30px;
+}
+
+
+.subContainer h1{
+    font-family: serif;
+    font-weight: 700;
+    font-family: 24pt;
+}
+
+.subContainer p{
+    font-family: sans-serif;
+    font-size: 16pt;
+    &::before{
+        content: '';
+        float: left;
+        height: 2px;
+        width: 18px;
+        position: absolute;
+        left: 720px;
+        margin-top: 18px;
+        background-color: rgb(213, 213, 213);
+        font-size: 24pt;
+    }
+}

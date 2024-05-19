@@ -1,7 +1,7 @@
 import React from 'react'
-import Produtos from '../Pages/Produtos.jsx'
 import Home from '../Pages/Home.jsx'
 import Contato from '../Pages/Contato.jsx'
+import Produtos from '../Pages/Produtos.jsx'
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom"
 // Utilize a API abaixo para puxar a lista de produto
 // https://ranekapi.origamid.dev/json/api/produto
@@ -16,6 +16,7 @@ const Rotas = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="contato" element={<Contato />} />
+          <Route path='produtos/:id' element={<Produtos />} />
         </Routes>
       </BrowserRouter>
   )
