@@ -3,6 +3,8 @@ import Produtos from '../Pages/Produtos'
 import Buttons from '../Components/Buttons'
 import styles from './css/Home.module.css'
 import { Link, useParams } from 'react-router-dom';
+import Head from '../Pages/Head';
+
 
 const Home = ( ) => {
 // Utilize a API abaixo para puxar a lista de produto

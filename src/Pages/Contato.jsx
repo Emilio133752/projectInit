@@ -2,11 +2,12 @@ import React from 'react'
 import Imagem from '../img/foto.jpg?react'
 import styles from './css/Contato.module.css'
 import Buttons from '../Components/Buttons'
-
+import Head from './Head'
 const Contato = () => {
   return (
     <>
     <Buttons />
+    <Head title={`Dogs | Contato`}/>
     <div className={styles.container}>
             <div className={styles.subContainer}>
                 <img className={styles.imagem} src={Imagem} alt="" />

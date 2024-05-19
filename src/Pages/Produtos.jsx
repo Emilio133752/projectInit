@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './css/Produtos.module.css'
 import { NavLink } from 'react-router-dom'
 import DescProdutos from './DescProdutos'
+import Head from './Head'
+
 const Produtos = ({ dados, carregando }) => {
 
   if(carregando){
@@ -16,6 +18,7 @@ const Produtos = ({ dados, carregando }) => {
   }
   return(
     <div>
+      <Head title={`Dogs | Home`}/>
       <div className={styles.container}>
         {dados.map((items) => (
             <div key={items.id}>
