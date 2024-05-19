@@ -1,6 +1,7 @@
 import React from 'react'
 import Produtos from '../Pages/Produtos'
 import Buttons from '../Components/Buttons'
+import styles from './css/Home.module.css'
 import { Link, useParams } from 'react-router-dom';
 
 const Home = ( ) => {
@@ -10,9 +11,15 @@ const Home = ( ) => {
 // https://ranekapi.origamid.dev/json/api/produto/notebook
   const [dados, setDados] = React.useState(null);
   const [error, setError] = React.useState(null);
+  const [carregando, setCarregando] = React.useState(false) 
+
+  const params = useParams();
 
   React.useEffect(() => {
-    fetch(`https://ranekapi.origamid.dev/json/api/produto`)
+    if(params.id){
+      setCarregando(true)
+    }
+    fetch(`https://ranekapi.origamid.dev/json/api/produto${params.id ? "/" + params.id : ''}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -21,19 +28,22 @@ const Home = ( ) => {
       })
       .then(data => {
         setDados(data);
+        setCarregando(false)
       })
       .catch(error => {
         setError(error);
       });
-  }, []);
+  }, [params.id]);
 
 
   if (error) return <div>Error: {error.message}</div>;
   return (
     <div>
       <Buttons /> 
-      {dados && <Produtos dados={dados} />}
+      {dados && <Produtos dados={dados} carregando={carregando}/> }
+      <p className={styles.footerPar}>Alguns direitos reservados</p>
     </div>
+    
   )
 }
 

@@ -20,3 +20,25 @@
     font-size: 18pt;
     font-weight: bold;
 }
+
+.containerLoader{
+    display: flex;
+    justify-content: initial;
+    width: 680px;
+    margin: 0 auto;
+}
+
+.loader{
+    animation: is-rotating 2s infinite;
+    width: 30px;
+    height: 30px;
+    border: 8px solid rgba(0, 0, 0, 0.073);
+    border-radius: 50%;
+    border-top-color: rgb(154, 154, 154);
+}
+
+@keyframes is-rotating{
+    to{
+        transform: rotate(1turn);
+    }
+}

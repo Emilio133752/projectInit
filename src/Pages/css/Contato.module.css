@@ -1,7 +1,7 @@
 .container{
     display: flex;
     justify-content: center;
-    max-width: 695px;
+    max-width: 900px;
     flex-wrap: wrap;
     margin: 2% auto;
 }
